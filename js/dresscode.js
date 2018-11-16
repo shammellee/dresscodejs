@@ -58,21 +58,21 @@ var _start = Date.now();
       {
         return _stylesheet.cssRules;
       }
+    }
 
-      ,dress: function dress()
+    ,dress: function dress()
+    {
+      var _nodes = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'));
+
+      for(var i = 0; i < _nodes.length; i++)
       {
-        var _nodes = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'));
+        var _ruleset = new Dresscode.RuleSet(_nodes[i]);
 
-        for(var i = 0; i < _nodes.length; i++)
+        for(var _keys = Object.keys(_ruleset.rules), k = 0; k < _keys.length; k++)
         {
-          var _ruleset = new Dresscode.RuleSet(_nodes[i]);
+          var _key = _keys[k];
 
-          for(var _keys = Object.keys(_ruleset.rules), k = 0; k < _keys.length; k++)
-          {
-            var _key = _keys[k];
-
-            _stylesheet.insertRule(_key + '{' + _ruleset.rules[_key].entries.join(';') + '}' + _ruleset.rules[_key].closing_braces, _stylesheet.cssRules.length);
-          }
+          _stylesheet.insertRule(_key + '{' + _ruleset.rules[_key].entries.join(';') + '}' + _ruleset.rules[_key].closing_braces, _stylesheet.cssRules.length);
         }
       }
     }
@@ -218,7 +218,7 @@ var _start = Date.now();
   // stylesheet
   if(_config.auto_dress)
   {
-    Dresscode.helpers.dress();
+    Dresscode.dress();
   }
 
   // options#refresh_interval = null
