@@ -1,5 +1,8 @@
-Dresscode is a new way to think about building web pages. At its core,
-Dresscode embeds entire CSS rules in CSS class names. For example:
+Dresscode is a new way to think about building web pages.
+
+# Overview
+
+At its core, Dresscode embeds entire CSS rules in CSS class names. For example:
 
 ```html
 <div data-dresscode='my-class' class='background-color_red color_white'></div>
