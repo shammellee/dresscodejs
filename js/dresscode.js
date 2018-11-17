@@ -60,7 +60,7 @@
 
     ,dress: function dress(_pretty_output)
     {
-      var _nodes   = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'))
+      var _nodes = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'))
           ,_ruleset
           ,_rule
           ,_keys
