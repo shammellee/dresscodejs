@@ -1,9 +1,23 @@
-(function(root)
-{
-  'use strict';
+'use strict';
 
-  var document = root.document
-      ,_style
+(function(root, factory)
+{
+  if(('function' === typeof define) && define.amd)
+  {
+    // AMD. Register as an anonymous module
+    define([], factory);
+  } else if(('object' === typeof module) && module.exports)
+  {
+    // Node. Does not work with strict CommonJS, but only CommonJS-like
+    // environments that support module.exports, like Node
+    module.exports = factory();
+  } else {
+    // Browser globals (root is window)
+    root.Dresscode = factory();
+  }
+}(('undefined' !== typeof self) ? self : this, function()
+{
+  var _style
       ,_stylesheet
       ,_config
       ,_lookup
@@ -224,6 +238,10 @@
     _stylesheet = _style.sheet;
 
     Dresscode.helpers.apply_dataset(_style);
+  } else
+  {
+    _style      = document.head.appendChild(document.createElement('style'));
+    _stylesheet = _style.stylesheet;
   }
 
   _lookup = Dresscode.helpers.lookup;
@@ -250,11 +268,13 @@
 
     _meta.httpEquiv = 'refresh';
     _meta.content   = Dresscode.variables.refreshInterval;
+
     document.head.appendChild(_meta);
   }
 
   Dresscode.style      = _style;
   Dresscode.stylesheet = _stylesheet;
-  root.Dresscode       = Dresscode;
-}(window));
+
+  return Dresscode;
+}));
 
