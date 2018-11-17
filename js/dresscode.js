@@ -1,5 +1,3 @@
-var _start = Date.now();
-
 (function(root)
 {
   'use strict';
@@ -44,10 +42,10 @@ var _start = Date.now();
 
       ,lookup: function lookup(_variable_key, _type, _default)
       {
+        var _value;
+
         _type    = _type || String;
         _default = _default || null;
-
-        var _value;
 
         return _value = Dresscode.variables.hasOwnProperty(_variable_key)
                         ? _type(Dresscode.variables[_variable_key])
@@ -62,15 +60,21 @@ var _start = Date.now();
 
     ,dress: function dress()
     {
-      var _nodes = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'));
+      var _nodes = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'))
+          ,_ruleset
+          ,_keys
+          ,_key
+          ,i
+          ,k
+          ;
 
       for(var i = 0; i < _nodes.length; i++)
       {
-        var _ruleset = new Dresscode.RuleSet(_nodes[i]);
+        _ruleset = new Dresscode.RuleSet(_nodes[i]);
 
-        for(var _keys = Object.keys(_ruleset.rules), k = 0; k < _keys.length; k++)
+        for(_keys = Object.keys(_ruleset.rules), k = 0; k < _keys.length; k++)
         {
-          var _key = _keys[k];
+          _key = _keys[k];
 
           _stylesheet.insertRule(_key + '{' + _ruleset.rules[_key].entries.join(';') + '}' + _ruleset.rules[_key].closing_braces, _stylesheet.cssRules.length);
         }
@@ -79,24 +83,29 @@ var _start = Date.now();
 
     ,RuleSet: function RuleSet(_node)
     {
+      var _classname
+          ,_rule
+          ,i
+          ;
+
       this.variables = _node.dataset;
       this.dresscode = this.variables.dresscode;
       this.classes   = Array.prototype.slice.call(_node.classList);
       this.rules     = {};
 
-      for(var i = 0; i < this.classes.length; i++)
+      for(i = 0; i < this.classes.length; i++)
       {
-        var _classname = this.classes[i]
-            ,_rule = {
-              match: Dresscode.regex.NORMAL_RULE.exec(_classname)
-              ,key: ''
-              ,at_rules: ''
-              ,pseudos: ''
-              ,property: ''
-              ,value: ''
-              ,closing_braces: ''
-            }
-            ;
+        _classname = this.classes[i];
+
+        _rule = {
+          match: Dresscode.regex.NORMAL_RULE.exec(_classname)
+          ,key: ''
+          ,at_rules: ''
+          ,pseudos: ''
+          ,property: ''
+          ,value: ''
+          ,closing_braces: ''
+        };
 
         if(_rule.match)
         {
@@ -137,7 +146,7 @@ var _start = Date.now();
     ,decorate_at_rules: function decorate_at_rules(_rule)
     {
       // Append formatted @rules, if any, to rule's `key` property
-      var _at_rules        = _rule.match[1].split('_')  // Index 1 == CSS @rules (eg, at-sm_at-import_)
+      var _at_rules = _rule.match[1].split('_')  // Index 1 == CSS @rules (eg, at-sm_at-import_)
           ,_variable_key
           ,_variable_value
           ;
@@ -235,6 +244,4 @@ var _start = Date.now();
 
   root.Dresscode = Dresscode;
 }(window));
-
-console.log(Date.now() - _start + 'ms');
 
