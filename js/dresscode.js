@@ -2,9 +2,9 @@
 {
   'use strict';
 
-  var document     = root.document
-      ,_style      = document.querySelector('style#dresscode')
-      ,_stylesheet = _style.sheet
+  var document = root.document
+      ,_style
+      ,_stylesheet
       ,_config
       ,_lookup
       ,Dresscode
@@ -213,7 +213,12 @@
     }
   };
 
-  Dresscode.helpers.apply_dataset(_style);
+  if(_style = document.querySelector('style#dresscode'))
+  {
+    _stylesheet = _style.sheet;
+
+    Dresscode.helpers.apply_dataset(_style);
+  }
 
   _lookup = Dresscode.helpers.lookup;
 
@@ -242,6 +247,8 @@
     document.head.appendChild(_meta);
   }
 
-  root.Dresscode = Dresscode;
+  Dresscode.style      = _style;
+  Dresscode.stylesheet = _stylesheet;
+  root.Dresscode       = Dresscode;
 }(window));
 
