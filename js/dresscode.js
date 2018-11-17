@@ -58,15 +58,18 @@
       }
     }
 
-    ,dress: function dress()
+    ,dress: function dress(_pretty_output)
     {
-      var _nodes = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'))
+      var _nodes   = Array.prototype.slice.call(document.querySelectorAll('[data-dresscode]'))
           ,_ruleset
+          ,_rule
           ,_keys
           ,_key
           ,i
           ,k
           ;
+
+      Dresscode.output = '';
 
       for(var i = 0; i < _nodes.length; i++)
       {
@@ -74,9 +77,12 @@
 
         for(_keys = Object.keys(_ruleset.rules), k = 0; k < _keys.length; k++)
         {
-          _key = _keys[k];
+          _key  = _keys[k];
+          _rule = _key + '{' + _ruleset.rules[_key].entries.join(';') + '}' + _ruleset.rules[_key].closing_braces;
 
-          _stylesheet.insertRule(_key + '{' + _ruleset.rules[_key].entries.join(';') + '}' + _ruleset.rules[_key].closing_braces, _stylesheet.cssRules.length);
+          Dresscode.output += _rule;
+
+          _stylesheet.insertRule(_rule, _stylesheet.cssRules.length);
         }
       }
     }

@@ -1,0 +1,8 @@
+{
+  "name": "dresscodejs",
+  "version": "0.1.0",
+  "description": "A faster way to build web pages",
+  "repository": "git@github.com:shammellee/dresscodejs.git",
+  "author": "Shammel Lee <holler@shammellee.com>",
+  "license": "MIT"
+}
