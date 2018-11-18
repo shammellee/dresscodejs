@@ -5,9 +5,6 @@
   "repository": "git@github.com:shammellee/dresscodejs.git",
   "author": "Shammel Lee <holler@shammellee.com>",
   "license": "MIT",
-  "scripts": {
-    "test": "jest"
-  },
   "devDependencies": {
     "jest": "^23.6.0"
   }
