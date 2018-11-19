@@ -11,8 +11,8 @@ JEST_CMD := $(realpath $(NODE_BIN_DIR)/jest)
 # ===========
 
 dev:
-	@$(JEST_CMD) --watchAll
+	@$(JEST_CMD) --watchAll --rootDir=$(realpath lib)
 
 test:
-	@$(JEST_CMD)
+	@$(JEST_CMD) --coverage
 
