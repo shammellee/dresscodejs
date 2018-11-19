@@ -73,4 +73,5 @@ Compiles to:
 # ToDo
 
 * Improve config process
+* Group rules by @rules part of key
 
