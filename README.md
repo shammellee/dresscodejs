@@ -70,3 +70,7 @@ Compiles to:
 }
 ```
 
+# ToDo
+
+* Improve config process
+
