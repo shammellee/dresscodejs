@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Dresscode should have no output if autoDress is disabled 1`] = `undefined`;
-
-exports[`Dresscode should store correct CSS ruleset in Dresscode.output when Dresscode.dress() is called 1`] = `".my-class{background-color:blue;color:yellow;font-size:2rem;padding:5px}"`;
