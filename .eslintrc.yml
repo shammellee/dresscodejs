@@ -1,0 +1,31 @@
+env:
+  browser: true
+  commonjs: true
+  amd: true
+  es6: true
+  node: true
+extends: 'eslint:recommended'
+parserOptions:
+  ecmaVersion: 2015
+rules:
+  indent:
+    - error
+    - 2
+      MemberExpression: off
+      ignoredNodes:
+      - ConditionalExpression
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - always
+  one-var:
+    - error
+    - always
+  no-cond-assign:
+    - off
+
