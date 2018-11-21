@@ -74,4 +74,6 @@ Compiles to:
 
 * Improve config process
 * Group rules by @rules part of key
+* Hide elements with data-dresscode
+* Handle pseudo-elements requiring parentheses
 
